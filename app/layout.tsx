@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Claudinéia Calegari · Corretora de Imóveis",
-  description: "Especialista em imóveis em Foz do Iguaçu. CRECI-PR 43.743.",
+  title: "Osteopatia Integrativa · Dr. Niuton Cesar Schneider",
+  description: "Osteopatia integrativa em Foz do Iguaçu e Santa Rita (PY) com o Dr. Niuton Cesar Schneider.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
