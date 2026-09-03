@@ -85,11 +85,6 @@ export default async function LandingPage() {
     getContent(), getVideos(), getProperties360(), getIntegrations()
   ]);
 
-  const whatsapp = c(content, "links.whatsapp_number", "5545999731581");
-  const instagram = c(content, "links.instagram_url", "https://www.instagram.com/claudineiacalegari/");
-  const youtube   = c(content, "links.youtube_url",   "https://www.youtube.com/@claudineiacalegari");
-  const email     = c(content, "links.email",          "contato@claudineiacalegari.com.br");
-
   const imgCard = (key: string, fallback: string) =>
     c(content, `cards.${key}`, `/img/${fallback}`);
 
@@ -104,7 +99,7 @@ export default async function LandingPage() {
           {/* ── HERO ── */}
           <section className="hero">
             <div className="hero-img-wrap">
-              <img src={c(content, "hero.image_url", "/img/hero.jpg")} alt="Claudinéia Calegari" />
+              <img src={c(content, "hero.image_url", "/img/hero.jpg")} alt={c(content, "hero.name", "Foto de capa")} />
             </div>
             <div className="hero-text">
               <span className="hero-eyebrow">{c(content, "hero.eyebrow", "muito prazer, sou a")}</span>
@@ -132,89 +127,52 @@ export default async function LandingPage() {
           {/* ── CARDS ── */}
           <div className="cards">
 
-            {/* WhatsApp */}
-            <TrackedLink id="whatsapp-geral" label="WhatsApp — Fale Comigo"
-              href={`https://wa.me/${whatsapp}`} className="card-photo tall"
-              style={{ "--accent": "#25D366", "--card-bg": "#0F1F14", background: "#0F1F14", borderColor: "rgba(37,211,102,0.18)" } as React.CSSProperties}>
-              <div className="cp-text">
-                <span className="cp-eyebrow" style={{ color: "#25D366" }}>contato direto</span>
-                <span className="cp-headline">FALE COMIGO NO WHATSAPP</span>
-                <span className="cp-desc">Atendimento rápido<br />e personalizado.</span>
-                <span className="cp-cta" style={{ borderColor: "rgba(37,211,102,0.32)", color: "#25D366" }}>
-                  <svg viewBox="0 0 24 24" fill="#25D366" style={{ width: 14, height: 14 }}><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
-                  Enviar mensagem
-                </span>
-              </div>
-              <div className="cp-img">
-                <img src={imgCard("img_whatsapp", "card-whatsapp.jpg")} alt="" />
-              </div>
-            </TrackedLink>
-
-            {/* Imóveis disponíveis */}
-            <TrackedLink id="whatsapp-imoveis" label="WhatsApp — Imóveis Disponíveis"
-              href={`https://wa.me/${whatsapp}?text=Ol%C3%A1%2C%20gostaria%20de%20ver%20os%20im%C3%B3veis%20dispon%C3%ADveis!`}
+            {/* Consulta — Foz do Iguaçu */}
+            <TrackedLink id="consulta-foz" label="Agendar — Foz do Iguaçu"
+              href={c(content, "links.booking_foz_url", "#")}
               className="card-photo tall"
-              style={{ "--accent": "#B8966E", "--card-bg": "#181816" } as React.CSSProperties}>
+              style={{ "--accent": "#4C8C6B", "--card-bg": "#0F1A16", background: "#0F1A16", borderColor: "rgba(76,140,107,0.18)" } as React.CSSProperties}>
               <div className="cp-text">
-                <span className="cp-eyebrow">portfólio</span>
-                <span className="cp-headline">IMÓVEIS DISPONÍVEIS</span>
-                <span className="cp-desc">Casas, aptos e terrenos<br />em Foz do Iguaçu.</span>
-                <span className="cp-cta">
-                  Ver imóveis
+                <span className="cp-eyebrow" style={{ color: "#4C8C6B" }}>consulta</span>
+                <span className="cp-headline">AGENDE SUA CONSULTA EM FOZ DO IGUAÇU</span>
+                <span className="cp-desc">Atendimento presencial<br />com hora marcada.</span>
+                <span className="cp-cta" style={{ borderColor: "rgba(76,140,107,0.32)", color: "#4C8C6B" }}>
+                  Agendar consulta
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 11, height: 11 }}><path d="M6 3l5 5-5 5" /></svg>
                 </span>
               </div>
               <div className="cp-img">
-                <img src={imgCard("img_imoveis", "card-imoveis.jpg")} alt="" />
+                <img src={imgCard("img_foz", "card-whatsapp.jpg")} alt="" />
               </div>
             </TrackedLink>
 
-            {/* Comprar */}
-            <TrackedLink id="whatsapp-comprar" label="WhatsApp — Quero Comprar"
-              href={`https://wa.me/${whatsapp}?text=Ol%C3%A1%2C%20quero%20comprar%20um%20im%C3%B3vel!`}
+            {/* Consulta — Santa Rita (PY) */}
+            <TrackedLink id="consulta-santa-rita" label="Agendar — Santa Rita (PY)"
+              href={c(content, "links.booking_santa_rita_url", "#")}
               className="card-photo tall"
               style={{ "--accent": "#B8966E", "--card-bg": "#181816" } as React.CSSProperties}>
               <div className="cp-text">
-                <span className="cp-eyebrow">compra</span>
-                <span className="cp-headline">QUERO COMPRAR UM IMÓVEL</span>
-                <span className="cp-desc">Indicação gratuita<br />e personalizada.</span>
+                <span className="cp-eyebrow">consulta</span>
+                <span className="cp-headline">AGENDE SUA CONSULTA EM SANTA RITA (PY)</span>
+                <span className="cp-desc">Atendimento presencial<br />com hora marcada.</span>
                 <span className="cp-cta">
-                  Quero comprar
+                  Agendar consulta
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 11, height: 11 }}><path d="M6 3l5 5-5 5" /></svg>
                 </span>
               </div>
               <div className="cp-img">
-                <img src={imgCard("img_comprar", "card-comprar.jpg")} alt="" />
-              </div>
-            </TrackedLink>
-
-            {/* Vender */}
-            <TrackedLink id="whatsapp-vender" label="WhatsApp — Quero Vender"
-              href={`https://wa.me/${whatsapp}?text=Ol%C3%A1%2C%20quero%20vender%20meu%20im%C3%B3vel!`}
-              className="card-photo tall"
-              style={{ "--accent": "#B8966E", "--card-bg": "#181816" } as React.CSSProperties}>
-              <div className="cp-text">
-                <span className="cp-eyebrow">venda</span>
-                <span className="cp-headline">QUERO VENDER MEU IMÓVEL</span>
-                <span className="cp-desc">Avaliação e divulgação<br />especializada.</span>
-                <span className="cp-cta">
-                  Quero vender
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 11, height: 11 }}><path d="M6 3l5 5-5 5" /></svg>
-                </span>
-              </div>
-              <div className="cp-img">
-                <img src={imgCard("img_vender", "card-vender.jpg")} alt="" />
+                <img src={imgCard("img_santa_rita", "card-imoveis.jpg")} alt="" />
               </div>
             </TrackedLink>
 
             {/* Instagram */}
             <TrackedLink id="instagram" label="Instagram"
-              href={instagram} className="card-photo"
+              href={c(content, "links.instagram_url", "#")} className="card-photo"
               style={{ "--accent": "#E1306C", "--card-bg": "#1A1016", background: "#1A1016", borderColor: "rgba(225,48,108,0.15)" } as React.CSSProperties}>
               <div className="cp-text">
                 <span className="cp-eyebrow" style={{ color: "#E1306C" }}>instagram</span>
                 <span className="cp-headline">ME SIGA NO INSTAGRAM</span>
-                <span className="cp-desc">Conteúdo diário<br />sobre imóveis.</span>
+                <span className="cp-desc">Conteúdo diário<br />sobre osteopatia.</span>
                 <span className="cp-cta" style={{ borderColor: "rgba(225,48,108,0.32)", color: "#E1306C" }}>
                   Seguir agora
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 11, height: 11 }}><path d="M6 3l5 5-5 5" /></svg>
@@ -225,21 +183,39 @@ export default async function LandingPage() {
               </div>
             </TrackedLink>
 
-            {/* YouTube */}
-            <TrackedLink id="youtube-canal" label="YouTube — Canal"
-              href={youtube} className="card-photo"
-              style={{ "--accent": "#FF4444", "--card-bg": "#1A1110", background: "#1A1110", borderColor: "rgba(255,68,68,0.15)" } as React.CSSProperties}>
+            {/* TikTok */}
+            <TrackedLink id="tiktok" label="TikTok"
+              href={c(content, "links.tiktok_url", "#")} className="card-photo"
+              style={{ "--accent": "#25F4EE", "--card-bg": "#0D1414", background: "#0D1414", borderColor: "rgba(37,244,238,0.15)" } as React.CSSProperties}>
               <div className="cp-text">
-                <span className="cp-eyebrow" style={{ color: "#FF4444" }}>youtube</span>
-                <span className="cp-headline">CANAL NO YOUTUBE</span>
-                <span className="cp-desc">Vídeos completos<br />sobre imóveis.</span>
-                <span className="cp-cta" style={{ borderColor: "rgba(255,68,68,0.32)", color: "#FF6666" }}>
-                  Assistir agora
+                <span className="cp-eyebrow" style={{ color: "#25F4EE" }}>tiktok</span>
+                <span className="cp-headline">ME SIGA NO TIKTOK</span>
+                <span className="cp-desc">Vídeos e dicas<br />de bem-estar.</span>
+                <span className="cp-cta" style={{ borderColor: "rgba(37,244,238,0.32)", color: "#25F4EE" }}>
+                  Seguir agora
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 11, height: 11 }}><path d="M6 3l5 5-5 5" /></svg>
                 </span>
               </div>
               <div className="cp-img">
-                <img src={imgCard("img_youtube", "card-youtube.jpg")} alt="" />
+                <img src={imgCard("img_tiktok", "card-youtube.jpg")} alt="" />
+              </div>
+            </TrackedLink>
+
+            {/* Avaliação Google */}
+            <TrackedLink id="google-review" label="Avaliação Google"
+              href={c(content, "links.google_review_url", "#")} className="card-photo"
+              style={{ "--accent": "#4285F4", "--card-bg": "#0D1420", background: "#0D1420", borderColor: "rgba(66,133,244,0.15)" } as React.CSSProperties}>
+              <div className="cp-text">
+                <span className="cp-eyebrow" style={{ color: "#4285F4" }}>avaliação</span>
+                <span className="cp-headline">AVALIE NOSSO ATENDIMENTO</span>
+                <span className="cp-desc">Sua opinião nos ajuda<br />a melhorar sempre.</span>
+                <span className="cp-cta" style={{ borderColor: "rgba(66,133,244,0.32)", color: "#4285F4" }}>
+                  Avaliar no Google
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 11, height: 11 }}><path d="M6 3l5 5-5 5" /></svg>
+                </span>
+              </div>
+              <div className="cp-img">
+                <img src={imgCard("img_google", "card-comprar.jpg")} alt="" />
               </div>
             </TrackedLink>
           </div>
@@ -335,23 +311,10 @@ export default async function LandingPage() {
             </section>
           )}
 
-          {/* ── E-MAIL ── */}
-          <div style={{ width: "100%", padding: "0 16px 0" }}>
-            <TrackedLink id="email" label="E-mail" href={`mailto:${email}`} className="card-plain">
-              <span className="cp2-eyebrow">e-mail</span>
-              <span className="cp2-headline">ENVIAR E-MAIL</span>
-              <span className="cp2-desc">{email}</span>
-              <span className="cp2-cta">
-                Enviar mensagem
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 11, height: 11 }}><path d="M6 3l5 5-5 5" /></svg>
-              </span>
-            </TrackedLink>
-          </div>
-
           {/* ── RODAPÉ ── */}
           <footer className="footer">
-            <div className="footer-logo">{c(content, "hero.name", "CLAUDINÉIA CALEGARI")}</div>
-            <div className="footer-creci">{c(content, "footer.creci", "CRECI-PR 43.743")}</div>
+            <div className="footer-logo">{c(content, "hero.name", "DR. NIUTON CESAR SCHNEIDER")}</div>
+            <div className="footer-creci">{c(content, "footer.creci", "")}</div>
             <div className="footer-copy">{c(content, "footer.copyright", "© 2026 · Todos os direitos reservados")}</div>
           </footer>
 

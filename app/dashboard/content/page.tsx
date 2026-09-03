@@ -31,14 +31,29 @@ const SECTION_LABELS: Record<string, string> = {
   footer: "Rodapé",
 };
 
+// Ordem de exibição das seções no painel
+const SECTION_ORDER = ["hero", "links", "cards", "intro", "footer"];
+
+// Ordem de exibição dos campos dentro de cada seção (chaves não listadas vão pro final, em ordem alfabética)
+const FIELD_ORDER: Record<string, string[]> = {
+  hero: ["image_url", "name", "eyebrow", "subtitle"],
+  links: [
+    "booking_foz_url",
+    "booking_santa_rita_url",
+    "instagram_url",
+    "tiktok_url",
+    "google_review_url",
+  ],
+  cards: ["img_foz", "img_santa_rita", "img_instagram", "img_tiktok", "img_google"],
+};
+
 const IMAGE_HINTS: Record<string, string> = {
-  "hero.image_url":       "480 × 500 px",
-  "cards.img_whatsapp":   "220 × 260 px",
-  "cards.img_imoveis":    "220 × 260 px",
-  "cards.img_comprar":    "220 × 260 px",
-  "cards.img_vender":     "220 × 260 px",
+  "hero.image_url":      "480 × 500 px",
+  "cards.img_foz":        "220 × 260 px",
+  "cards.img_santa_rita": "220 × 260 px",
   "cards.img_instagram":  "220 × 200 px",
-  "cards.img_youtube":    "220 × 200 px",
+  "cards.img_tiktok":     "220 × 200 px",
+  "cards.img_google":     "220 × 200 px",
 };
 
 const PLATFORM_OPTIONS = [
@@ -192,7 +207,28 @@ export default function ContentPage() {
     );
   }
 
-  const sections = Array.from(new Set(content.map((r) => r.section)));
+  const sections = Array.from(new Set(content.map((r) => r.section))).sort((a, b) => {
+    const ia = SECTION_ORDER.indexOf(a);
+    const ib = SECTION_ORDER.indexOf(b);
+    if (ia === -1 && ib === -1) return a.localeCompare(b);
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  });
+
+  function sortedRows(section: string) {
+    const order = FIELD_ORDER[section];
+    const rows = content.filter((r) => r.section === section);
+    if (!order) return rows;
+    return [...rows].sort((a, b) => {
+      const ia = order.indexOf(a.key);
+      const ib = order.indexOf(b.key);
+      if (ia === -1 && ib === -1) return a.key.localeCompare(b.key);
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
+  }
 
   return (
     <div className="p-8 space-y-8">
@@ -213,7 +249,7 @@ export default function ContentPage() {
             <CardTitle className="text-white text-base">{SECTION_LABELS[section] ?? section}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {content.filter((r) => r.section === section).map((row) => (
+            {sortedRows(section).map((row) => (
               <div key={row.id} className="space-y-1.5">
                 <Label className="text-white/60 text-xs">{row.label ?? row.key}</Label>
                 {row.type === "image" ? (
